@@ -241,7 +241,7 @@ console.log(parseInt(10n) - 4)
 console.log(10n - BigInt(4))
 console.log(5n / 2n) // 2n
 ```
-### Math - глобальный обх+ъект математических операций
+### Math - глобальный объект математических операций
 ```javascript
 
 ```
