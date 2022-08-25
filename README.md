@@ -243,5 +243,26 @@ console.log(5n / 2n) // 2n
 ```
 ### Math - глобальный объект математических операций
 ```javascript
+console.log(Math.E)
+console.log(Math.PI) 
 
+console.log(Math.sqrt(25))
+console.log(Math.pow(2, 10))
+console.log(Math.abs(-42))
+console.log(Math.max(1, 10, 57, -90, 3))
+console.log(Math.min(1, 10, 57, -90, 3))
+console.log(Math.floor(5.9)) // округляет в меньшую сторону
+console.log(Math.ceil(5.9)) // округляет в большую сторону
+console.log(Math.round(5.9)) // просто округляет до ближайшего целого
+console.log(Math.trunc(5.9))  // возвращяет целую часть цисла
+console.log(Math.random())
+console.log(Math.sin(Math.PI/6)) // много других функций
+```
+### Пример работы с Math.random()
+```javascript
+function getRandomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+console.log(getRandomBetween(1, 42))
 ```
