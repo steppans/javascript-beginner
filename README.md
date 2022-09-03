@@ -266,3 +266,163 @@ function getRandomBetween(min, max) {
 
 console.log(getRandomBetween(1, 42))
 ```
+
+## Строки
+Конкатенация строк
+```javascript
+const name = 'Stepan'
+const age = 19
+const output = 'Hello, my name is ' + name + ' and I am ' + age + ' years old.' // Плохой стиль
+const output = `Hello, my name is ${name} and I am ${age} years old.` // В динамике можно использовать и функции, а также тернарные выражения
+const output = `
+    <div>This is div</div>
+    <p>This is p</p>
+`
+
+console.log(output)
+```
+Методы класса String
+```javascript
+const firstName = 'Stepan'
+console.log(firstName.length)
+console.log(firstName.toUpperCase())
+console.log(firstName.toLowerCase())
+console.log(firstName.charAt(2))        // получаем букву на данной позиции
+console.log(firstName.indexOf('pan'))   // есть ли такое сочетание букв в строке
+console.log(firstName.startsWith('ste'))
+console.log(firstName.toLowerCase().startsWith('ste'))  // можно так
+console.log(firstName.endsWith('pan'))
+console.log(firstName.repeat(2))
+
+const string = '    <-Tab'
+console.log(string)
+console.log(string.trim()) // позволяет отчищать строку от пробелов
+```
+Особенности синтаксиса для вызова некоторых функций
+```javascript
+function logPerson(s, firstName, age) {
+    console.log(s, firstName, age)
+    return 'Info about person'
+}
+
+const personName = 'Stepan'
+const personAge = 19
+
+const output = logPerson`Name: ${personName}, Age: ${personAge}!`
+
+console.log(output)        // 'Info about person'
+// Что происходит: в массив s передаётся строка ``(обратные кавычки), разделённая на подстроки до символа '${}'
+// А в остальные парметры функции передаются поочерёдно элеметы из динамической строки
+// Это делается для валидации значений внутри функции, чтобы защитить наше приложение
+
+function improvedLogPerson(s, firstName, age) {
+    if (age < 0) {
+        age = 'Ещё не родился'
+    }
+    return `${s[0]}${firstName}${s[1]}${age}${s[2]}`
+}
+
+const testName1 = 'Mikel'
+const testName2 = 'Dimon'
+const testAge1 = 10
+const testAge2 = -5
+
+console.log(improvedLogPerson`Name: ${testName1}, Age: ${testAge1}...`)
+console.log(improvedLogPerson`Name: ${testName2}, Age: ${testAge2}...`)
+```
+
+## Функции
+```javascript
+// Function Declaration
+// К такой функции мы можем обращаться, когда захотим (даже если она перенесена ниже её вызова в коде)
+function greet(firstName) {
+    console.log(`Hi - ${firstName}`)
+}
+
+// Function Expression
+// К такой функции можно обращаться только после её определения
+const goodbye = function(firstName) {  // можно так передавать анонимную функцию, а можно 'function goodbye() {...}'
+    console.log(`Bye - ${firstName}`)
+}
+
+greet('Dasha')
+goodbye('Dasha')
+
+console.log(typeof greet)
+console.dir(greet)         // изучить лучше тип function -> функции в JavaScript - это объекты
+```
+Анонимные функции
+```javascript
+let counter = 0
+// Запускает анонимную функцию через некоторый интервал в миллиметрах
+const interval = setInterval(function() {  // setTimeout() - запускает задержку (по аналогии - clearTimeout)
+    if (counter === 5) {
+        clearInterval(interval)            // глобальная функция, которая останавливает запущенный интервал
+    }
+    else {
+        console.log(++counter)
+    }
+}, 1000)  
+```
+Стрелочные функции
+```javascript
+function greet(firstName) {
+    console.log(`Hi - ${firstName}`)
+}
+
+const arrowGreet = (firstName) => {
+    console.log(`Hi - ${firstName}`)
+} 
+
+const arrowGreet2 = firstName => console.log(`Hi - ${firstName}`) // так можно если в теле функции одна строка, и передаётся один параметр
+
+greet('Misha')
+arrowGreet('Misha')
+arrowGreet2('Misha')
+
+const pow2 = num => num ** 2 // возвращает число
+console.log(pow2(10))
+```
+Параметры по умолчанию
+```javascript
+const sum = (a = 10, b = a*2) => a + b
+console.log(sum(11, 13))
+console.log(sum())
+
+function sumAll(...all) {
+    console.log(all)
+    let result = 0
+    for (let num of all) {
+        result += num
+    }
+    return result
+}
+
+const res = sumAll(1, 2, 3, 4, 5)
+console.log(res)
+```
+Замыкания
+```javascript
+function createMember(firstName) {
+    return function(lastName) {
+        console.log(firstName + lastName)
+    }
+}
+
+const logWithLastName = createMember('Stepan')
+console.log(logWithLastName)
+logWithLastName('Smirnov')
+logWithLastName('Ivanov')
+
+createMember('Stepan')('Smirnov') // дефолтный запуск
+// По сути это сделано для того, чтобы таким образом создать аналог приватных переменных.
+// Ведь у функции с lastName нет никакого доступа к переменной firstName
+```
+
+## Массивы
+```javascript
+
+```
+```javascript
+
+```
