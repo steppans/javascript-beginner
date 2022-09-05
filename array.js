@@ -1,7 +1,7 @@
 // Массивы
 
 const cars = ['Mazda', 'Ford', 'BMW', 'Mersedes']
-const fib = [1, 1, 2, 3, 5, 8, 13, '21', true]    // в JavaScript можно хранить объекты разного типа в массиве
+const fib = [1, 1, 2, 3, 5, 8, 13]    // в JavaScript можно хранить объекты разного типа в массиве
 
 // // Добавление элементов в конец
 // cars.push('Renault')
@@ -61,4 +61,36 @@ const people = [
 
 // Методы высокого порядка
 
+// const upperCaseCars = cars.map(car => car.toUpperCase()) // возвращет новый массив с изменёнными данными
+// console.log(upperCaseCars)
+// console.log(cars)
 
+// // const pow2Fib = fib.map(num => num ** 2)
+// // console.log(pow2Fib)
+
+// // Можно так
+// const pow2 = num => num ** 2
+// const pow2Fib = fib.map(pow2)
+// console.log(pow2Fib)
+
+// const pow2Fib = fib.map(num => num ** 2)
+// const filteredNumbers = pow2Fib.filter(num => num > 20)           // не void метод 
+// console.log(filteredNumbers)
+
+// const allMoney = people.reduce((acc, person) => {      // acc - счётчик для суммирования(например), второй параметр функции - начальное значение счётчика
+//     acc += person.money
+//     return acc
+// }, 0)
+
+// console.log(allMoney)
+
+// Немного из продвинутого программирования
+
+const allMoney = people
+.filter(person => person.money > 1000)
+.reduce((acc, person) => {
+    acc += person.money
+    return acc
+}, 0)
+
+console.log(allMoney)
